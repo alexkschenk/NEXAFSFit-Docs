@@ -1,0 +1,15 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  id: 2ed421e4-38c1-4333-9794-2b0f399b071c
+  # title:
+  # description:
+  # keywords: []
+  # authors: []
+  github: https://github.com/alexkschenk/NEXAFSFit-Docs
+  # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
+site:
+  template: book-theme
+  # options:
+  #   favicon: favicon.ico
+  #   logo: site_logo.png
