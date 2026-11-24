@@ -1,0 +1,7 @@
+# Development tools for the existing nexafs-fit Conda environment.
+# Install the project itself first; NumPy/Matplotlib are its runtime dependencies.
+# These tools must not become engine/GUI runtime or executable dependencies.
+jupyter-book>=2.1.7,<3
+ipykernel
+nbformat
+nbclient

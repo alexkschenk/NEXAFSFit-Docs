@@ -1,0 +1,13 @@
+{
+  "base_url": "/",
+  "hostname": "localhost",
+  "password": false,
+  "pid": 8232,
+  "port": 55404,
+  "root_dir": "C:\\Users\\a3schenk\\OneDrive - LA TROBE UNIVERSITY\\Research - 2026\\NEXAFSFit_GUI\\docs\\book",
+  "secure": false,
+  "sock": "",
+  "token": "bd18f2176ca1c1dfdb241c75d63f3c03c257e49177a0e95a",
+  "url": "http://localhost:55404/",
+  "version": "2.17.0"
+}

@@ -1,0 +1,14 @@
+{
+  "random_seed": 20261123,
+  "noise_standard_deviation": 0.006,
+  "parameters": {
+    "b0": 0.04,
+    "b1": 0.002,
+    "P1_A": 1.6,
+    "P1_mu": 285.0,
+    "P1_sigma": 0.32,
+    "P2_A": 0.95,
+    "P2_mu": 287.2,
+    "P2_sigma": 0.55
+  }
+}

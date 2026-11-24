@@ -1,0 +1,590 @@
+[
+  {
+    "physical_test_area": [
+      1600,
+      950
+    ],
+    "scale": 1.0,
+    "logical_client": [
+      1600,
+      950
+    ],
+    "font": "Segoe UI",
+    "dpr": 1.0,
+    "workspace": {
+      "size": [
+        1600,
+        950
+      ],
+      "minimum": [
+        758,
+        656
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false,
+      "plot_axes": [
+        800,
+        184
+      ],
+      "mode": "standard",
+      "scan_browser_visible": true
+    },
+    "preparation": {
+      "size": [
+        1250,
+        900
+      ],
+      "minimum": [
+        405,
+        392
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false,
+      "reference_in_tab": true,
+      "reference_size": [
+        1250,
+        900
+      ]
+    },
+    "series": {
+      "size": [
+        1150,
+        850
+      ],
+      "minimum": [
+        243,
+        110
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false
+    },
+    "series_setup": {
+      "size": [
+        1290,
+        810
+      ],
+      "minimum": [
+        178,
+        110
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false
+    },
+    "batch_peaks": {
+      "size": [
+        1050,
+        820
+      ],
+      "minimum": [
+        178,
+        110
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false
+    }
+  },
+  {
+    "physical_test_area": [
+      1366,
+      768
+    ],
+    "scale": 1.0,
+    "logical_client": [
+      1366,
+      768
+    ],
+    "font": "Segoe UI",
+    "dpr": 1.0,
+    "workspace": {
+      "size": [
+        1366,
+        768
+      ],
+      "minimum": [
+        623,
+        585
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false,
+      "plot_axes": [
+        892,
+        192
+      ],
+      "mode": "compact",
+      "scan_browser_visible": true
+    },
+    "preparation": {
+      "size": [
+        1250,
+        720
+      ],
+      "minimum": [
+        405,
+        289
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false,
+      "reference_in_tab": true,
+      "reference_size": [
+        1250,
+        720
+      ]
+    },
+    "series": {
+      "size": [
+        1150,
+        720
+      ],
+      "minimum": [
+        243,
+        110
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false
+    },
+    "series_setup": {
+      "size": [
+        1290,
+        720
+      ],
+      "minimum": [
+        178,
+        110
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false
+    },
+    "batch_peaks": {
+      "size": [
+        1050,
+        720
+      ],
+      "minimum": [
+        178,
+        110
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false
+    }
+  },
+  {
+    "physical_test_area": [
+      1280,
+      720
+    ],
+    "scale": 1.0,
+    "logical_client": [
+      1280,
+      720
+    ],
+    "font": "Segoe UI",
+    "dpr": 1.0,
+    "workspace": {
+      "size": [
+        1280,
+        720
+      ],
+      "minimum": [
+        623,
+        421
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false,
+      "plot_axes": [
+        806,
+        298
+      ],
+      "mode": "compact",
+      "scan_browser_visible": false
+    },
+    "preparation": {
+      "size": [
+        1250,
+        672
+      ],
+      "minimum": [
+        405,
+        289
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false,
+      "reference_in_tab": true,
+      "reference_size": [
+        1250,
+        672
+      ]
+    },
+    "series": {
+      "size": [
+        1150,
+        672
+      ],
+      "minimum": [
+        243,
+        110
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false
+    },
+    "series_setup": {
+      "size": [
+        1256,
+        672
+      ],
+      "minimum": [
+        178,
+        110
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false
+    },
+    "batch_peaks": {
+      "size": [
+        1050,
+        672
+      ],
+      "minimum": [
+        178,
+        110
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false
+    }
+  },
+  {
+    "physical_test_area": [
+      1024,
+      768
+    ],
+    "scale": 1.0,
+    "logical_client": [
+      1024,
+      768
+    ],
+    "font": "Segoe UI",
+    "dpr": 1.0,
+    "workspace": {
+      "size": [
+        1024,
+        768
+      ],
+      "minimum": [
+        623,
+        585
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false,
+      "plot_axes": [
+        550,
+        192
+      ],
+      "mode": "compact",
+      "scan_browser_visible": true
+    },
+    "preparation": {
+      "size": [
+        1000,
+        720
+      ],
+      "minimum": [
+        405,
+        289
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false,
+      "reference_in_tab": true,
+      "reference_size": [
+        1000,
+        720
+      ]
+    },
+    "series": {
+      "size": [
+        1000,
+        720
+      ],
+      "minimum": [
+        243,
+        110
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false
+    },
+    "series_setup": {
+      "size": [
+        1000,
+        720
+      ],
+      "minimum": [
+        178,
+        110
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false
+    },
+    "batch_peaks": {
+      "size": [
+        1000,
+        720
+      ],
+      "minimum": [
+        178,
+        110
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false
+    }
+  },
+  {
+    "physical_test_area": [
+      1366,
+      768
+    ],
+    "scale": 1.25,
+    "logical_client": [
+      1093,
+      614
+    ],
+    "font": "Segoe UI",
+    "dpr": 1.25,
+    "workspace": {
+      "size": [
+        1093,
+        614
+      ],
+      "minimum": [
+        623,
+        421
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false,
+      "plot_axes": [
+        619,
+        201
+      ],
+      "mode": "compact",
+      "scan_browser_visible": false
+    },
+    "preparation": {
+      "size": [
+        1069,
+        566
+      ],
+      "minimum": [
+        405,
+        289
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false,
+      "reference_in_tab": true,
+      "reference_size": [
+        1069,
+        566
+      ]
+    },
+    "series": {
+      "size": [
+        1069,
+        566
+      ],
+      "minimum": [
+        243,
+        110
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false
+    },
+    "series_setup": {
+      "size": [
+        1069,
+        566
+      ],
+      "minimum": [
+        178,
+        110
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false
+    },
+    "batch_peaks": {
+      "size": [
+        1050,
+        566
+      ],
+      "minimum": [
+        178,
+        110
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false
+    }
+  },
+  {
+    "physical_test_area": [
+      1920,
+      1080
+    ],
+    "scale": 1.25,
+    "logical_client": [
+      1536,
+      864
+    ],
+    "font": "Segoe UI",
+    "dpr": 1.25,
+    "workspace": {
+      "size": [
+        1536,
+        864
+      ],
+      "minimum": [
+        623,
+        585
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false,
+      "plot_axes": [
+        1062,
+        280
+      ],
+      "mode": "compact",
+      "scan_browser_visible": true
+    },
+    "preparation": {
+      "size": [
+        1250,
+        816
+      ],
+      "minimum": [
+        405,
+        289
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false,
+      "reference_in_tab": true,
+      "reference_size": [
+        1250,
+        816
+      ]
+    },
+    "series": {
+      "size": [
+        1150,
+        816
+      ],
+      "minimum": [
+        243,
+        110
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false
+    },
+    "series_setup": {
+      "size": [
+        1290,
+        810
+      ],
+      "minimum": [
+        178,
+        110
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false
+    },
+    "batch_peaks": {
+      "size": [
+        1050,
+        816
+      ],
+      "minimum": [
+        178,
+        110
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false
+    }
+  },
+  {
+    "physical_test_area": [
+      1920,
+      1080
+    ],
+    "scale": 1.5,
+    "logical_client": [
+      1280,
+      720
+    ],
+    "font": "Segoe UI",
+    "dpr": 1.5,
+    "workspace": {
+      "size": [
+        1280,
+        720
+      ],
+      "minimum": [
+        623,
+        421
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false,
+      "plot_axes": [
+        806,
+        298
+      ],
+      "mode": "compact",
+      "scan_browser_visible": false
+    },
+    "preparation": {
+      "size": [
+        1250,
+        672
+      ],
+      "minimum": [
+        405,
+        289
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false,
+      "reference_in_tab": true,
+      "reference_size": [
+        1250,
+        672
+      ]
+    },
+    "series": {
+      "size": [
+        1150,
+        672
+      ],
+      "minimum": [
+        243,
+        110
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false
+    },
+    "series_setup": {
+      "size": [
+        1256,
+        672
+      ],
+      "minimum": [
+        178,
+        110
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false
+    },
+    "batch_peaks": {
+      "size": [
+        1050,
+        672
+      ],
+      "minimum": [
+        178,
+        110
+      ],
+      "actions_in_bounds": true,
+      "outer_horizontal_scroll": false
+    }
+  }
+]
