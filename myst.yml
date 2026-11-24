@@ -1,15 +1,56 @@
-# See docs at: https://mystmd.org/guide/frontmatter
 version: 1
+
 project:
-  id: 2ed421e4-38c1-4333-9794-2b0f399b071c
-  # title:
-  # description:
-  # keywords: []
-  # authors: []
-  github: https://github.com/alexkschenk/NEXAFSFit-Docs
-  # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
+  id: 31f179ca-20e7-457e-a27e-5ddf4a6e5388
+  title: NEXAFSFit Documentation
+  description: A guide to NEXAFSFit's graphical interface, data preparation and fitting workflows.
+  # Retain these sources for a later release; omit them from reader builds.
+  exclude:
+    - python/**
+    - contributing/**
+    - examples/data/README.md
+  toc:
+    - file: index.md
+    - title: Graphical interface
+      children:
+        - file: gui/getting-started.md
+        - file: gui/layout-and-small-screens.md
+        - title: Data and preparation
+          children:
+            - file: gui/scans-and-channels.md
+            - file: gui/import-diagnostics.md
+            - file: gui/metadata.md
+            - file: gui/preparing-data.md
+        - title: Model construction and inspection
+          children:
+            - file: gui/model-editor.md
+            - file: gui/drag-controls.md
+            - file: gui/component-display.md
+            - file: gui/peak-constraints.md
+        - title: Fitting and saving results
+          children:
+            - file: gui/fitting-and-results.md
+            - file: gui/sessions-and-models.md
+            - file: gui/exporting-fits.md
+        - title: Series workflows
+          children:
+            - file: gui/series-fitting.md
+            - file: gui/two-pass-fitting.md
+        - file: gui/troubleshooting.md
+    - title: Scientific reference
+      children:
+        - file: reference/lineshapes.md
+        - file: reference/constraints.md
+    - title: Worked examples
+      children:
+        - file: examples/index.md
+        - file: examples/beamline-workflow.md
+        - file: examples/series-walkthrough.md
+
 site:
   template: book-theme
-  # options:
-  #   favicon: favicon.ico
-  #   logo: site_logo.png
+  title: NEXAFSFit
+  options:
+    folders: true
+    logo_text: NEXAFSFit
+    favicon: media/images/favicon.svg
