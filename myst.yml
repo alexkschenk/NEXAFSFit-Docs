@@ -15,32 +15,59 @@ project:
       children:
         - file: gui/getting-started.md
         - file: gui/layout-and-small-screens.md
-        - title: Data and preparation
+        - title: Import and inspect data
           children:
-            - file: gui/scans-and-channels.md
+            - file: gui/importing-data.md
+            - file: gui/energy-order-review.md
             - file: gui/import-diagnostics.md
+            - file: gui/scans-and-channels.md
+            - file: gui/comparing-scans.md
             - file: gui/metadata.md
+            - file: gui/scan-notes.md
+        - title: Prepare scans
+          children:
             - file: gui/preparing-data.md
-        - title: Model construction and inspection
+            - file: gui/reference-calibration.md
+            - file: gui/photodiode-correction.md
+            - file: gui/normalisation-windows.md
+        - title: Build and constrain a model
           children:
             - file: gui/model-editor.md
+            - file: gui/adding-peaks.md
+            - file: gui/parameter-table.md
             - file: gui/drag-controls.md
-            - file: gui/component-display.md
             - file: gui/peak-constraints.md
-        - title: Fitting and saving results
+            - file: gui/edge-links.md
+        - title: Inspect the model display
+          children:
+            - file: gui/component-display.md
+            - file: gui/edge-subtraction.md
+            - file: gui/component-offsets.md
+        - title: Fit one spectrum
           children:
             - file: gui/fitting-and-results.md
-            - file: gui/sessions-and-models.md
-            - file: gui/exporting-fits.md
-        - title: Series workflows
+            - file: gui/fit-settings.md
+            - file: gui/fit-results.md
+        - title: Fit a series
           children:
             - file: gui/series-fitting.md
+            - file: gui/series-constraints.md
+            - file: gui/series-trends.md
             - file: gui/two-pass-fitting.md
+            - file: gui/series-review.md
+        - title: Save and export
+          children:
+            - file: gui/sessions-and-models.md
+            - file: gui/model-files.md
+            - file: gui/recovery.md
+            - file: gui/exporting-fits.md
         - file: gui/troubleshooting.md
     - title: Scientific reference
       children:
         - file: reference/lineshapes.md
+        - file: reference/preparation.md
         - file: reference/constraints.md
+        - file: reference/fit-statistics.md
     - title: Worked examples
       children:
         - file: examples/index.md

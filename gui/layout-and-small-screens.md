@@ -1,6 +1,6 @@
 # Arrange the workspace and use smaller screens
 
-GUI **0.2.28** supports dockable panels, collapsible controls and compact layouts.
+GUI **0.2.30** supports dockable panels, collapsible controls and compact layouts.
 Start with [the first-fit guide](getting-started.md), then use this page to find
 hidden panels or gain plotting space. These arrangements do not change spectra,
 preparation, model parameters or fit limits.
@@ -44,23 +44,36 @@ the browser to verify that selection before fitting.
 - Scroll a narrow parameter table horizontally for later columns, or detach it.
   The Parameter column is resizable; hover over cells for full text.
 
-Use **Reset layout for this window** if panels become awkward to recover. Docking
-moves the same widgets; it does not create another model or switch channels. See
+:::{tip} Recover an awkward arrangement
+Use **View → Reset layout for this window** if panels become awkward to recover.
+You can also reopen individual panels through **View**.
+:::
+
+Docking moves the same widgets; it does not create another model or switch channels. See
 [scan-browser behaviour](scans-and-channels.md#detach-or-hide-the-browser).
 
 ## Expand only the controls you need
 
 Arrow headers expand **Component controls**, **Constraints / corrections**,
-**Display options** and **Fit energy range**. Collapsing a section leaves its
-values active: it does not disable a fitting domain or turn off edge subtraction.
+**Display options** and **Fit energy range**.
+
+:::{important} Collapsing hides controls without disabling them
+The section's values remain active when collapsed. A collapsed range still
+restricts fitting, and a hidden edge-subtraction checkbox can remain checked.
+:::
+
 The headers have a pale-blue fill, bold blue text and an outline even when closed.
 Their arrows indicate open/closed state; hover and keyboard focus strengthen the
 highlight. Compact **More…** and message **Details** use the same button styling.
+
+### Find fitting actions in Compact
 
 The range header reports the limits and lock state; open it to edit them.
 **Fit spectrum** and **Propagate model / fit…** stay visible. **F5** also fits the
 active spectrum. In Compact, **More…** contains **Fit settings…** and **Last fit
 results**; Standard keeps their separate buttons. See [fit controls](fitting-and-results.md).
+
+### Expand message details
 
 Messages can collapse to severity and a one-line summary. **Details** expands the
 current diagnostic and compatibility notices; **History…** keeps full recent
@@ -80,12 +93,16 @@ Dialogs initially fit the available screen. Long setup content can scroll while
 Apply/Cancel or staging actions remain available. Scroll wide rule tables
 horizontally to reach later columns; scrolling does not edit values.
 
+### Prepare scans and inspect the reference
+
 In **Prepare scans**, expand **Scans to prepare** to review target checkboxes; its
 header reports the selected count. Settings scroll independently of the plots.
 If **Show reference calibration** cannot fit beside the preview, it opens a
 **Reference calibration** preview tab. Return to **Raw / prepared preview** for
 the signals; Hide removes the optional reference tab. These view actions do not
 run processing. Follow [explicit preparation](preparing-data.md#preparation-is-explicit).
+
+### Configure a series fit
 
 In the series dialog, expand **Series setup** for strategy, constraints, trend
 order/coordinates and pass-two setup. Targets and review tabs remain outside it.

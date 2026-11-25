@@ -1,7 +1,7 @@
 # Your first spectrum fit
 
 :::{note} Current workflow
-These instructions describe GUI **0.2.27**. The basic workflow is implemented;
+These instructions describe GUI **0.2.30**. The basic workflow is implemented;
 button placement may receive minor refinements in later versions.
 :::
 
@@ -69,8 +69,10 @@ With an empty model, the plot shows the data without a Total envelope or residua
 panel. They appear when suitable components are added or loaded; see
 [components and corrections](model-editor.md#components-and-optional-corrections).
 
+:::{note} The example is already fit-ready
 The CSV is already suitable for fitting. Leave preparation off. For raw beamline
 scans, use [importing and preparing data](preparing-data.md) instead.
+:::
 
 ## Load a starting model
 
@@ -103,6 +105,8 @@ explains the controls.
 The main fit uses only the active spectrum's selected channel. Check the residual
 plot as well as the envelope: the remaining deviations should resemble small
 noise rather than a missed spectral feature.
+
+### Compare with the known generating values
 
 The example's known parameters are approximately:
 
@@ -145,12 +149,28 @@ channels without changing the active fit, use [scan management](scans-and-channe
 
 ## Help and hover descriptions
 
-Hover over buttons and menu commands for short tooltips. **Help → Documentation**
-opens local help (F1); **Help → About…** reports the application version and
-contributors. **Help → Set documentation file…** lets you select a local Markdown
-or HTML help file. Keep the version with an error report, and use the Messages panel's
+Hover over buttons and menu commands for short tooltips. **Help → Documentation…**
+(F1) shows a dialog linking to the
+[online manual](https://alexkschenk.github.io/NEXAFSFit-Docs/). Click the link or
+**Open online manual** to open your web browser; internet access is required.
+The link can also be copied. Bundled offline HTML help is planned for a later
+release. **Help → About…** reports the application version and contributors.
+Keep the version with an error report, and use the Messages panel's
 History… for its full text. Complete sessions preserve data/model/results for
 later inspection; temporary message and model Undo histories are not persisted.
+
+Small **?** buttons beside panel headings and in dialog footers open the relevant
+manual page directly. Tabbed panels choose the current topic: Metadata help
+follows the Metadata tab, and **Pass-two reseeding / bounds** opens the
+[two-pass guide](two-pass-fitting.md). Tab to a help button and press Space to
+activate it from the keyboard.
+
+**Help → Documentation topics** also offers model templates, sessions, recovery
+and workspace-layout guidance. Help opens in your default browser. The GUI does
+not check the website on startup or when constructing panels; normal analysis
+works offline. If the browser cannot be launched, a non-blocking message provides
+the address to copy. Newer topic pages become available when the matching Book
+edition is published.
 
 ## Related topics
 

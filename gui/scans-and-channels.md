@@ -1,6 +1,6 @@
 # Managing scans, channels and comparisons
 
-These instructions describe GUI **0.2.27**. The browser manages independent
+These instructions describe GUI **0.2.30**. The browser manages independent
 acquisitions; selecting a trace is separate from selecting preparation or fit targets.
 
 The standard large-window split reserves six scan rows. Compact initially uses
@@ -17,29 +17,21 @@ The default split shown with six synthetic acquisitions. The dock divider remain
 adjustable when inspecting larger collections or giving the plot more space.
 :::
 
-## Import files or a folder
+(import-files-or-a-folder)=
 
-**Data import → Import** adds one file without discarding the scans already loaded.
-Native SXR `.asc` files use NEXAFSFit's channel/header importer. The original
-source bytes, header, native dictionary and monitor channels remain retained.
-Channeltron is the usual initial detector; choose another mapped signal afterward.
+## Read the scan table
 
-For ordinary text/CSV, select delimiter, header rows and distinct energy/intensity
-columns explicitly. This imports one intensity signal; unrelated CSV columns do
-not automatically become native detector or reference channels.
+First [import files or a folder](importing-data.md). This page describes the
+resulting browser table and independent channel workspaces.
 
-**Load folder** reads native `.asc` files in the chosen directory, without recursing
-into subdirectories. Import the PD acquisition with the sample scans if needed.
-The table starts with filename, comment, **Overlay**, **Set energy (eV)** and
-**Incidence angle** (fifth). Detector and Preparation are adjacent, followed by
-raw sample position, Points and Acquired. Invalid files are reported by filename while
-valid files remain loaded. Cancelling stops between files and retains those already
-read. Exact repeats of a retained native filename/content are skipped.
+### Arrange the scan-table columns
 
 File and comment columns start compact. Drag any column-header boundary to resize them;
 widths remain as adjusted while inspecting scans. Scan number is omitted from
 this table, but remains available in retained metadata. Right-click column headings
 to show/hide columns; **Notes** starts hidden.
+
+### Read the set-energy range
 
 **Set energy** is the minimum–maximum of the original **Mono Setpoint**, column 2
 in native SXR files. It uses recorded setpoints for acquired points, independently
@@ -54,20 +46,6 @@ See [raw sample position and units](metadata.md#raw-sample-position).
 Synthetic scans in the detached browser. Notes are hidden initially; right-click
 a row to edit notes or a heading to choose visible columns.
 :::
-
-## Review energy order
-
-A fit needs finite, strictly increasing measured energies. An SXR scan with
-backward steps opens **Review measured-energy order**. Compare acquisition-order
-and sorted previews, then choose **Import sorted copy** or skip that scan.
-
-Sorting keeps every measurement paired with its detector values; it does not
-average, smooth or discard points, and the original acquisition order/source stays
-retained. Exact duplicate energies and nonfinite data are not repaired by sorting.
-No sorting runs merely because a scan is opened or selected.
-
-See [import diagnostics](import-diagnostics.md) for the review dialog, unresolved
-errors, text-column import checks and partial folder-import failures.
 
 ## Select each scan's detector independently
 
@@ -88,6 +66,8 @@ to a stage reads stored arrays; it does not rerun processing. I0 and beam-curren
 monitors remain available as raw/aligned counts rather than being normalised by
 themselves. An unavailable stage/channel is reported instead of substituted.
 
+### Return to a channel's working model
+
 Every visited scan/channel retains its own model, fitting range, prepared signal
 and last successful fit. Returning restores that channel's work. A newly visited
 channel starts with a copy of the current model. Switching scans preserves working
@@ -100,32 +80,7 @@ inspect its status and prepare/refit the intended channel before using old resul
 
 ## Compare scans without changing fit targets
 
-Check row **Overlay** boxes or use **Overlay all scans**. Each overlay uses that
-row's Detector, so a PD acquisition can show Photodiode Direct while a sample
-shows prepared Channeltron. The active curve is slightly thicker; all overlaid
-traces are lines labelled with filename, channel and stage. **Clear overlays**
-returns to the active spectrum's point display.
-
-Overlays do not resample or comparison-normalise signals. A raw monitor can have
-a very different intensity scale from a prepared detector: choose compatible stages
-when comparing trends. [Comparison colours](component-display.md#change-component-and-comparison-colours)
-are editable through **Line colours…**. For model-based comparison views, see
-[edge subtraction](component-display.md#subtract-current-edges).
-
-Default comparison colours follow a sequential Viridis gradient across the loaded
-scan-table order. Early scans are purple, then blue/teal, then green. Active and
-inactive traces use the same mapping; toggling overlays does not redistribute it.
-Adding scans can redistribute default colours across the larger collection.
-Recorded angles are not used to silently sort scans. Individually assigned colours
-override the gradient and remain saved with the session.
-
-| Operation | Which data it uses |
-| --- | --- |
-| Main plot overlays | Each checked row's own Detector selection |
-| Fit spectrum | Active row's displayed channel only |
-| Prepare scans | Explicitly selected native acquisitions; recipe prepares all mapped detectors |
-| Propagate model / fit | Explicit targets on the source channel/stage, including available cached channels |
-| CSV export | Explicit rows' currently selected channels with retained successful fits |
+See [Compare scans without changing fit targets](comparing-scans.md#compare-scans-without-changing-fit-targets) for this procedure.
 
 ## Inspect metadata and incidence angle
 
@@ -147,19 +102,13 @@ explain their placement and reset commands.
 
 ## Attach notes to a scan
 
-Right-click a scan row and choose **Edit scan notes…**. Write observations or fitting
-reminders, then **Save** to attach the text to that scan; **Cancel** discards the
-dialog edits. Notes belong to the acquisition across all Detector channels and
-remain attached when preparation or reviewed series fits are applied.
+See [Attach notes to a scan](scan-notes.md#attach-notes-to-a-scan) for this procedure.
 
-To inspect them in the table, right-click a column heading and enable **Notes**.
-Hover for full text or double-click its cell to edit. Notes are plain text and do
-not replace the recorded comment/label or modify the acquisition file.
+## Related procedures
 
-Use **Session → Save session** to persist notes with the collection, then **Open
-session** to restore them. Model-only JSON and fitted-result CSV commands do not
-carry scan notes. Notes are not model edits in the Undo history. See
-[session checkpoints](sessions-and-models.md).
+### Review energy order
+
+If import opens an ordering panel, follow [Review and sort measured energies](energy-order-review.md).
 
 ## Related topics
 

@@ -1,6 +1,6 @@
 # Inspecting metadata and measurement angles
 
-These instructions describe GUI **0.2.24**. Metadata identifies an acquisition and
+These instructions describe GUI **0.2.30**. Metadata identifies an acquisition and
 its recorded settings. The Metadata view is read-only; selecting a display source
 does not edit the raw file, normalise a signal or constrain a fit.
 
@@ -57,7 +57,7 @@ numeric column has become a mapped detector channel.
 Ordinary text/CSV import retains selected columns and basic import settings, but
 does not retain a native raw-header record for this table; its Metadata table is
 empty. Acquisition metadata is also distinct from
-[preparation diagnostics](preparing-data.md#inspect-the-reference-calibration)
+[preparation diagnostics](reference-calibration.md#inspect-the-reference-calibration)
 or [fit statistics](fitting-and-results.md): use those panels for reference offsets,
 processing results and fitted parameters.
 
@@ -70,8 +70,13 @@ readbacks in that order. The identified PVs are `SR14ID01MCS02FAM:X.RBV`, `Y.RBV
 axis's recorded unit and exact PV. The supplied format uses mm for translations
 and degrees for rotations. Values are displayed without unit conversion.
 
+:::{important} Raw manipulator angle and incidence are different
 **Raw R1 = 80° stays 80° in this tuple**, while the separate calibrated incidence
-column shows 35° from the surface. Missing, conflicting or nonfinite readbacks
+column shows 35° from the surface. The Metadata tab also keeps the recorded R1;
+the derived incidence appears separately in the scan table.
+:::
+
+Missing, conflicting or nonfinite readbacks
 appear as `—` in their tuple position. Unrelated motors and guessed coordinates
 are not substituted. Preparation, detector switching and model changes do not
 alter these readbacks. See [scan-table set energy and layout](scans-and-channels.md#import-files-or-a-folder).
@@ -81,7 +86,7 @@ The Metadata tab retains the originally recorded unit strings such as `deg`;
 display symbols do not convert raw values or change the angle convention.
 
 User observations are separate from recorded metadata: use
-[scan notes](scans-and-channels.md#attach-notes-to-a-scan), saved with complete sessions.
+[scan notes](scan-notes.md#attach-notes-to-a-scan), saved with complete sessions.
 
 ## Select the incidence-angle source
 
@@ -98,10 +103,16 @@ if that field is absent. Selecting a source does not replace original metadata.
 Use **Use automatic incidence-angle source** in the same context menu to return
 to automatic identification without adding any metadata rows.
 
+### Label the convention of a directly recorded angle
+
 For a directly recorded angle, choose the interpretation label **From surface
 (90° = normal)**, **From normal (0° = normal)** or **As recorded**. This selector
-labels the convention; it does not calculate 90 minus the value or convert units.
-Use a source whose recorded meaning and units you understand.
+labels the convention.
+
+:::{warning} A convention label does not convert an angle
+The selector does not calculate 90 minus the value or convert units. Use a
+source whose recorded meaning and units you understand.
+:::
 
 ## The identified R1 conversion
 

@@ -1,15 +1,17 @@
 # Troubleshooting and workflow checks
 
-This guide covers GUI **0.2.24**. Start with the scan, channel and stage you intend
+This guide covers GUI **0.2.30**. Start with the scan, channel and stage you intend
 to analyse, then locate the step that produced the unexpected result. Preserve a
 session checkpoint before replacing preparation or applying a large series fit.
 
 ## Identify what is being changed
 
+:::{tip} Check the layout before changing the model
 If a panel or button seems absent, check **View** and expandable section headers
 before changing the model. Compact layouts tab Components/Parameters, may hide the
 scan browser, and put settings/results under **More…**. [Layout recovery](layout-and-small-screens.md)
 explains reset/show/detach controls and scrolling in preparation/series dialogs.
+:::
 
 | Action | Scope |
 | --- | --- |
@@ -30,13 +32,13 @@ independent selections.
 | Symptom | Check and next action |
 | --- | --- |
 | Only some folder files loaded | Read the failed filenames; folder loading handles native `.asc` files, not arbitrary CSV files or subdirectories. See [import diagnostics](import-diagnostics.md). |
-| Review measured-energy order opens | Inspect the acquisition/sorted previews before accepting a sorted copy. Duplicates and nonfinite values cannot be repaired by sorting. |
+| Review measured-energy order opens | Follow the [sorting-panel guide](energy-order-review.md) before accepting a sorted copy. Duplicates and nonfinite values cannot be repaired by sorting. |
 | Incidence is unavailable or unexpected | Inspect Source/PV on the [Metadata tab](metadata.md). The identified R1 conversion is R1 − 45°; the raw position tuple retains R1 itself. |
 | Set energy differs from the plotted endpoints | Set energy reports original mono setpoints. The plot can use measured or calibrated energies, and preparation may restrict PD overlap. |
 | A prepared detector/stage is absent | Preparation may not have been applied, or that optional channel failed. Read Channel issues and the row's preparation status; switching channels does not run processing. |
 | A scan says Previous preparation | It retains older work that could not be replaced by the latest recipe. Review or prepare/refit that channel before using it as current output. |
 
-Right-click a scan to record observations in [scan notes](scans-and-channels.md#attach-notes-to-a-scan).
+Right-click a scan to record observations in [scan notes](scan-notes.md#attach-notes-to-a-scan).
 Notes are separate from recorded metadata and persist with complete sessions.
 
 ## Preparation and calibration
@@ -45,14 +47,14 @@ Notes are separate from recorded metadata and persist with complete sessions.
 | --- | --- |
 | Apply is disabled after moving a window | Settings changed. Run a new successful Preview; old curves are retained for inspection, not as fresh apply-ready output. |
 | The reference panel asks for Preview | Preview performs calibration. Merely opening the panel or changing its inspected scan does not fit a reference. |
-| Reference marker/curve looks wrong | Check the reference channel, feature, search window and target. Parab3 is local three-point interpolation, not a general peak fit. See [reference inspection](preparing-data.md#inspect-the-reference-calibration). |
+| Reference marker/curve looks wrong | Check the reference channel, feature, search window and target. Parab3 is local three-point interpolation, not a general peak fit. See [reference inspection](reference-calibration.md#inspect-the-reference-calibration). |
 | No reference fit curve appears | Argextreme and boundary/degenerate parab3 fallbacks can supply a feature energy without a parabola. Read the panel diagnostic. |
-| Separate photodiode processing fails | Check reference selection, mapped channels, I0 values and energy/setpoint overlap. Use the recorded error rather than silently dropping or interpolating rows. |
-| Scale window gives an error or unexpected amplitude | Verify the aligned window and selected signal. Mean and signed trapezoidal area use different denominators; zero/nonfinite denominators are invalid. |
+| Separate photodiode processing fails | Check [PD reference selection and overlap](photodiode-correction.md), mapped channels and I0 values. Use the recorded error rather than silently dropping rows. |
+| Scale window gives an error or unexpected amplitude | Check [window placement and scale method](normalisation-windows.md) on the aligned signal. Zero/nonfinite denominators are invalid. |
 | Normalisation looks reasonable for one scan but not the series | Enable comparison overlays and inspect the same prepared stage across representative targets before Apply. |
 
-Follow the full [preparation procedure](preparing-data.md) for window dragging,
-all-detector processing and photodiode options. All preparation operates on copies;
+Use [preparation](preparing-data.md) to preview/apply the recipe and the linked
+panel guides for individual controls. All preparation operates on copies;
 it does not overwrite acquisition files.
 
 ## Component controls and fit limits
@@ -64,7 +66,7 @@ it does not overwrite acquisition files.
 | EMG maximum and μ marker disagree | μ is the underlying Gaussian mean. The maximum generally shifts with tau; see [EMG interpretation](../reference/lineshapes.md#emg-interpretation). |
 | Position-bound lines are absent | Enable Show μ bounds, select a visible independent peak, and inspect whether its bounds are infinite/off-screen. Use [graphical-bound instructions](drag-controls.md#set-position-bounds-by-dragging-lines). |
 | Zoom changes but the fitted interval does not | Viewing range, fitting domain and peak-position bounds are three separate settings. See [fit-domain controls](fitting-and-results.md#separate-the-viewing-range-from-the-fitting-range). |
-| An edge position is not editable independently | It may follow a peak. Inspect the chosen edge in [Link/Unlink edge to μ](peak-constraints.md#link-the-first-ionisation-edge-to-a-peak). |
+| An edge position is not editable independently | It may follow a peak. Inspect the chosen edge in [Link/Unlink edge to μ](edge-links.md#edge-links-position). |
 | Edge handles are missing or the slope will not drag | Select a visible edge, turn edge subtraction off, and enable Free for post_slope if needed. See [edge drag controls](drag-controls.md#drag-ionisation-edge-parameters). |
 | A dragged peak moves past its former μ limits | Position drags translate its interval; release and review Min/Max. Fixed states and links remain enforced. |
 | Components are faint, shifted or absent | Check Focus Mode, component visibility and Offset components. Those controls change the view, not fitted contributions. |
@@ -78,10 +80,10 @@ parameter sharing, scale factors or constraints.
 
 | Symptom | Check and next action |
 | --- | --- |
-| Fit reaches its evaluation limit | Check the channel, domain, model, bounds and links before increasing the budget. Use [Fit settings](fitting-and-results.md#set-the-evaluation-budget-and-tolerances); the budget counts residual evaluations. |
+| Fit reaches its evaluation limit | Check the channel, domain, model, bounds and links before increasing the budget. Use [Fit settings](fit-settings.md#set-the-evaluation-budget-and-tolerances); the budget counts residual evaluations. |
 | A fit converges but seems implausible | Inspect residual structure, bound hits, compensating parameters and sensitivity to sensible seeds. Convergence alone does not validate a scientific model. |
-| Series trends cannot be enabled for a parameter | Trends require an independent per-spectrum parameter and simultaneous fitting. Shared parameters already have one value; linked targets use their controlling source/separation. |
-| Strict trends report infeasibility | Check order/coordinates, target membership, fixed values and intersected bounds. A named extremum must be among the selected targets. |
+| Series trends cannot be enabled for a parameter | [Trend setup](series-trends.md) requires an independent per-spectrum parameter and simultaneous fitting. Use a linked target's controlling source/separation. |
+| Strict trends report infeasibility | Check [order/coordinates and feasibility](series-trends.md#order-coordinates-and-incompatible-constraints), target membership, fixed values and intersected bounds. A named extremum must be among the targets. |
 | Pass two is unavailable | Every target needs a successful fitted pass one. Copy-only output, changed first-pass settings or incomplete targets do not supply those seeds. |
 | Pass-two seed or bounds are rejected | Review the [averaging pool, seed and scope](two-pass-fitting.md). Means must be legal for each target; global parameters need a common seed. |
 | Series output is missing from the main plot | Staging retains working scans. Review the intended pass and Apply successful results, then return to that target channel. |
@@ -95,17 +97,21 @@ a running worker by force. [Series fitting](series-fitting.md) and [two-pass rev
 explain staging, invalidation and application.
 
 If a staged scan failed, its spectrum/residual preview is cleared and labelled.
-Use [parameter comparison](series-fitting.md#inspect-residuals-and-compare-parameter-trends)
+Use [parameter comparison](series-review.md#inspect-residuals-and-compare-parameter-trends)
 to inspect gaps and bound hits across the set. After an application interruption,
-use the [recovery choice](sessions-and-models.md#recover-interrupted-work); an old
+use the [recovery choice](recovery.md#recover-interrupted-work); an old
 checkpoint is a partial checkpoint in time, not confirmation that later work was saved.
 
 ## Keep a useful issue report
+
+### Record the operation and exact diagnostic
 
 Record the application version from **Help → About…**, the operation, scan/channel/
 stage, relevant settings and exact message. Messages → History retains recent full
 workspace feedback; modal import warnings may need recording separately. It is
 different from the model Undo/Redo history, and neither history persists on restart.
+
+### Keep the data and workflow context
 
 Keep an unedited source acquisition and a complete session if possible. State
 whether the issue arose before Preview, after Preview, after Apply, during fitting

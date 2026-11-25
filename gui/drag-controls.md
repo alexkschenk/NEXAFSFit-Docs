@@ -1,6 +1,6 @@
 # Dragging components and setting peak bounds
 
-:::{note} Implemented controls — GUI 0.2.26
+:::{note} Implemented controls — GUI 0.2.30
 This page describes the actual component handles and their parameter conversions.
 Dragging edits the working model; it does not run an optimisation. Use **Fit spectrum**
 after arranging the components and their allowed ranges.
@@ -63,6 +63,7 @@ to the right of its blue μ line. Moving the orange target preserves that shape
 offset; it does not redefine EMG μ to be the maximum.
 
 (position-drags-carry-mu-interval)=
+
 ### Position drags carry the μ interval
 
 While dragging the blue μ line or the position direction of the orange target,
@@ -84,7 +85,7 @@ using the shape selected in **Component controls**. Its height is estimated from
 the data above the current continuum; existing peaks stay in place. Use the
 orange target or blue line to move an existing peak. The **Add multiple peaks**
 dialog uses its own double-clicks to stage candidates for later addition; see
-[batch creation](model-editor.md#add-several-peaks-in-one-operation).
+[batch creation](adding-peaks.md#add-several-peaks-in-one-operation).
 
 ## Change width without changing maximum height
 
@@ -100,9 +101,14 @@ The label reports **one sigma or gamma on each side**, matching its numerical
 parameter. The full arrow span is twice that radius. These handles do not claim
 to measure the total FWHM of every lineshape.
 
+:::{important} Height-preserving drags change area
 The drag adjusts A to keep the component's maximum height constant. A broader
 peak therefore usually acquires more integrated area. Editing sigma/gamma directly
 in the table instead changes only that value and can change height at constant A.
+:::
+
+### Check free parameters and bounds
+
 Width dragging requires a free, independent A and, for sigma, a free independent
 width. If the required A falls outside its bounds, the height-preserving change
 is rejected; inspect Messages rather than assuming the width control is broken.
@@ -121,6 +127,7 @@ free/independent, and both sets of bounds apply. This arrow is a parameter contr
 not a measured width or a peak-to-peak separation.
 
 (drag-ionisation-edge-parameters)=
+
 ## Drag ionisation-edge parameters
 
 Select a visible edge in the component list or click its curve. The same controls
@@ -139,12 +146,16 @@ height is converted using the native edge response and gain; edge_step is a step
 amplitude, **not integrated peak area A**. The width arrow shows w_edge on each
 side; it is not an EMG tail or a peak-position bound.
 
+### Enable the parameter you want to drag
+
 Added post_slope starts fixed at zero. Enable its **Free** checkbox before dragging
 the purple diamond. Other fixed/linked parameters likewise retain their state:
 a peak-linked E_edge cannot move independently, but its free step, width or slope
 can still be edited. Edge parameter bounds continue to clamp edge drags; the
 travelling-interval behaviour above applies to peak μ only. With zero gain the
 height/slope response cannot be inverted, so those controls are unavailable.
+
+### Display settings and drag feedback
 
 These controls follow **Offset components**, with the visual shift removed during
 height conversion. They hide when **Subtract current edges** is checked or that
@@ -208,10 +219,12 @@ the linked target. See [relative peak constraints](peak-constraints.md).
 | Fitting energy range | Fitting box or unlocked shaded region | Chooses data points used by the optimiser |
 | Selected peak's μ bounds | Bound lines, explicit μ bounds from zoom, or Min/Max cells | Restricts that parameter's allowed position |
 
+:::{important} Zooming alone does not set bounds
 The **μ bounds from zoom** command deliberately transfers a viewing interval to
 parameter bounds; ordinary zoom does not. **Lock fit range** locks the shaded
 domain, not peak positions or their bounds. For fit-domain details, see
 [running a fit](fitting-and-results.md#separate-the-viewing-range-from-the-fitting-range).
+:::
 
 ## Offsets, feedback and controls that will not move
 
@@ -243,7 +256,7 @@ does not establish a unique or physically appropriate decomposition.
 
 ## Related topics
 
-- [Edit values, Free states and Sharing numerically](model-editor.md#values-bounds-free-and-sharing).
+- [Edit values, Free states and Sharing numerically](parameter-table.md#values-bounds-free-and-sharing).
 - [Use relative constraints for linked positions](peak-constraints.md).
 - [Change focus, colours, edge subtraction and offsets](component-display.md).
 - [Choose the fit domain and optimise the arranged model](fitting-and-results.md).

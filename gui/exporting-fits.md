@@ -1,6 +1,6 @@
 # Saving work and exporting fits
 
-:::{note} Implemented and tested — GUI 0.2.24
+:::{note} Implemented and tested — GUI 0.2.30
 CSV export has been checked against the numerical evaluator, including all four
 peak shapes, parameter links, multiple edges, gain/scaling and restricted fit
 ranges. The screenshot below uses synthetic data. See the
@@ -16,7 +16,7 @@ ranges. The screenshot below uses synthetic data. See the
 | Export → Fitted curves CSV… | Selected channels' last successful fitted curves and measured data | Comparing or plotting numerical results |
 | Export → Fit parameters CSV… | Selected channels' last successful fit parameters, states and statistics | Numerical analysis in other tools |
 
-**Open model** [reuses a saved model](model-editor.md#reuse-a-saved-model-on-current-data)
+**Open model** [reuses a saved model](model-files.md#reuse-a-saved-model-on-current-data)
 on the loaded spectrum without replacing its acquired data.
 [Open session](sessions-and-models.md) restores a saved workspace. Save a session
 before changing preparation if you need a persistent checkpoint of earlier work.
@@ -45,14 +45,22 @@ this chapter explains saved reports and their interpretation.
 Choose which retained fits to include. Exporting leaves working scans and models intact.
 :::
 
+:::{important} Export uses the saved successful fit
 The export uses the **last successful fitted model**, separately from subsequent
-parameter edits. Last fit results shows the corresponding statistics. A failed
-refit retains that earlier successful result. Changing preparation invalidates
+parameter edits. **Last fit results** shows the corresponding statistics. A failed
+refit retains that earlier successful result.
+:::
+
+### If an expected fit is unavailable
+
+Changing preparation invalidates
 affected results; refit those channels before exporting. An older fit record
 without a saved model snapshot needs a new fit before it can be exported.
 Opening a different model onto the data clears the active fit statistics; fit that
 model again before exporting it. Undoing model import restores the model, not a
 claim that the imported model was already fitted.
+
+### File format and preparation records
 
 CSV files use UTF-8 with a byte-order mark for Windows spreadsheet applications.
 Comments containing commas, Unicode or newlines are quoted. A cancelled or failed
@@ -82,11 +90,15 @@ table order, with identifiers repeated so the rows can be separated later.
 | `edge:<name>` | Each edge contribution; the first edge is `edge:primary` |
 | `group:<name>` | Sum of peak contributions in the named group |
 
+### Grid, fitting range and display settings
+
 The full grid is exported even for a restricted fit. This preserves the engine's
 background reference; use `in_fit_range` to select the points actually fitted.
 Zoom, Focus Mode, component visibility, visual component offsets and Subtract
 current edges do not alter exported arrays. `energy_eV` is the data energy axis;
 any fitted `dE` remains part of the evaluated model.
+
+### Absent components and group sums
 
 If selected scans have different components, the CSV contains the union of their
 component columns. A blank component cell means that component is absent in that
@@ -108,15 +120,18 @@ Lorentzian/Voigt `gamma` is included as a static specification, not as an
 optimised width. Unused EMG gamma is excluded. A missing standard error is blank,
 not zero. Infinite bounds are written as `-inf` and `inf`.
 
+:::{important} Preserve the parameter conventions
 Peak `A` is intrinsic **integrated area**, not height. Exported peak curves also
 include gain and optional component scaling. EMG `mu` is not necessarily the
 position of its maximum. Preserve these distinctions when analysing the CSV.
+:::
 
-The table includes the saved fitting range, evaluation count and fit statistics.
-For simultaneous fits, `statistics_scope` is **simultaneous series**: `chisqr`,
-`redchi` and `ndata` describe the joint optimisation. `spectrum_chisqr` and
-`spectrum_ndata` describe the individual scan. Strict trend fits have no covariance
-estimate, so their standard errors remain blank.
+### Joint and per-scan statistics
+
+The table includes saved fitting ranges, evaluation counts and statistics.
+For simultaneous fits, use `statistics_scope` to distinguish joint reports from
+`spectrum_chisqr` / `spectrum_ndata`. Definitions and strict-trend uncertainty
+limitations are in [Fit statistics and uncertainty](../reference/fit-statistics.md).
 
 ## Related topics
 

@@ -47,6 +47,7 @@ positions, widths and background level are free; background slope is fixed.
 No edge, gain or dE term is needed.
 
 (use-either-interface)=
+
 ### Use the example in the GUI
 
 Follow [Your first spectrum fit](../gui/getting-started.md): import the CSV,
@@ -62,8 +63,10 @@ and export the fitted curves/parameters.
 - Narrow the fitting domain while keeping the full-grid background reference.
 - Compare a saved successful CSV fit report with later edits to the working model.
 
+:::{note} Experiments with the model change its assumptions
 These exercises change modelling assumptions. They are not evidence that extra
 components or narrow bounds improve a scientific interpretation.
+:::
 
 ## Further examples
 

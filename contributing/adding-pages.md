@@ -55,6 +55,19 @@ Beside a control or scientific distinction, link the procedure/reference that
 answers the likely follow-up. End each non-home chapter with **Related topics**:
 choose a few useful companion tasks rather than copying the whole sidebar.
 
+Use one process or panel as the scope of a task page. For example, importing,
+the measured-energy sorting panel, preparation Preview/Apply, reference inspection
+and normalisation-window placement have distinct pages. A prerequisite sentence
+with a link is sufficient; do not repeat import instructions at the start of a
+preparation page. Overviews and end-to-end walkthroughs connect the process pages.
+Keep numerical definitions in the scientific reference and link to them from
+procedures. Update internal links when moving material; preserve old published
+section targets with short onward links where possible.
+
+When refreshing GUI version references, read `nexafsfit_gui.__version__` from the
+source checkout. Do not infer a release from screenshot filenames or substitute
+it for numerical schema versions, tool versions, experimental values or dates.
+
 Use descriptive link text such as “set independent position bounds” or “interpret
 joint fit statistics.” Preserve existing section anchors when changing headings.
 An explicit MyST label before a heading can keep an established target:
@@ -124,6 +137,27 @@ Put image files under `media/images/`. Reference them relatively, for example:
 ```
 
 Avoid screenshots containing unpublished data, private paths or credentials.
+
+For the current synthetic process-page captures, run from the repository root in
+`nexafs-fit`:
+
+```bat
+python -m tools.create_book_screenshots
+```
+
+This captures actual Qt widgets offscreen at a fixed logical desktop size with
+a Windows Segoe UI font. It uses deterministic native fixtures and a small
+synthetic fit; it does not open the user's desktop windows or process experimental
+files. Assets go into `media/images/`, with a generated size manifest in `_build/`.
+Inspect regenerated images for readable controls, clipped labels and misleading
+states before keeping them. The other, older illustration scenarios remain in
+`tools.preview_gui`; this command does not replace every image in the Book.
+
+Use a labelled MyST figure with alt text and a caption beside the relevant step.
+Identify synthetic data and distinguish illustrative settings from recommended
+experimental choices. Prefer a detail capture for a small control group; paired
+views can use native tab sets. Keep main instructions outside images so they
+remain searchable and usable without seeing a screenshot.
 
 ## Videos
 

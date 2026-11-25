@@ -1,31 +1,14 @@
-# Importing and preparing data
+# Preview and apply scan preparation
 
-:::{note} Current workflow — GUI 0.2.27
+:::{note} Current workflow — GUI 0.2.30
 One dialog prepares a single acquisition or selected scans. Preview stages results
 from retained originals; Apply commits them. The reference panel is optional.
 :::
 
-## Import a spectrum or a folder
-
-Choose **Data import → Import** for an individual file or **Load folder** for native
-SXR `.asc` acquisitions. Include the separate PD acquisition if it will be used.
-This preparation workflow requires retained native channels. Follow
-[import and channel selection](scans-and-channels.md#import-files-or-a-folder)
-for header/column handling, ordinary CSVs and folder-import behaviour.
-
-### Measured-energy jitter
-
-Resolve the explicit [energy-order review](import-diagnostics.md#review-before-importing-a-sorted-copy)
-before preparation. Sorting is a reviewed copy operation; it does not smooth,
-average or discard measurements or repair duplicate/nonfinite energies.
-
-## The scan browser
-
-Each row has an independent Detector selection. Switching it reads retained
-arrays without processing other scans. [Channel caches and overlays](scans-and-channels.md#select-each-scans-detector-independently)
-explain working-state preservation; [metadata](metadata.md) and [docking](scans-and-channels.md#detach-or-hide-the-browser)
-cover angle sources and the detachable browser. Overlay checkboxes do not select
-preparation or fitting targets.
+Import the acquisitions first using [Import data](importing-data.md), resolving
+any [energy-order review](energy-order-review.md). Preparation requires retained
+native channels; ordinary text/CSV imports do not supply native monitor/reference
+records. Select the intended acquisition in the [scan browser](scans-and-channels.md).
 
 ## Preparation is explicit
 
@@ -42,26 +25,42 @@ Preview the proposed changes, inspect them, then **Apply to selected scans**.
 Cancellation leaves all working scans intact. Preparation starts from original copies, rather than
 normalising an earlier result again.
 
+:::{figure} ../media/images/prepare-scans-overview.png
+:label: figure-prepare-scans-overview
+:alt: Prepare scans dialog with two sample acquisitions selected, a photodiode reference excluded from the targets, processing settings, raw and prepared overlays, and Preview and Apply buttons.
+
+Prepare scans after a successful synthetic preview. The target table is at the
+top, recipe settings on the left, and matching raw/prepared traces on the right.
+The separate PD scan is a reference, not a sample target. The shown settings are
+illustrative rather than recommended calibration or normalisation values.
+:::
+
 | Step | What to choose or inspect |
 | --- | --- |
 | I0 normalisation | Divide mapped detector signals by the incident monitor |
-| Energy alignment | Select one reference channel, feature window, maximum/minimum and target energy |
-| Separate photodiode correction | Choose an imported PD acquisition or a separate file and its PD channel |
-| Intensity preparation | Choose baseline/scale windows and mean-to-one or area-to-one scaling |
+| Energy alignment | [Configure and inspect the reference feature](reference-calibration.md) |
+| Separate photodiode correction | [Select a shared PD acquisition and channel](photodiode-correction.md) |
+| Intensity preparation | [Place baseline/scale windows and choose mean or area](normalisation-windows.md) |
 
+:::{important} One energy alignment per acquisition
 One reference-derived energy offset aligns all channels within an acquisition;
 they are acquired in parallel. Intensity preparation applies to the mapped
 detector channels, not just the preview detector. Raw I0/beam-current monitor
 arrays remain available for inspection. A failing optional channel is reported.
+:::
+
+### Enable only the operations you need
 
 Photodiode choices expand only when **Divide by separate I0-normalised photodiode
 scan** is checked. Baseline, scale and scale-method controls likewise appear under
 the intensity-preparation checkbox. Unchecking a section disables that operation;
 the stored choices remain available when it is checked again.
 
+:::{warning} Check the reference and window defaults
 The default reference and window values come from an earlier workflow. They are
 editable starting suggestions, not universal calibration energies or suitable
 windows for every absorption edge.
+:::
 
 ### What Preview runs
 
@@ -88,108 +87,11 @@ from the originals each time, rather than further processing the previous output
 | Apply to selected scans | Commit a successful current preview; no extra calibration pass |
 | Cancel | Discard staged changes; keep working scans intact |
 
-The acquisition's **reference search window** uses original measured energy.
-The **baseline and scale windows** use the prepared energy axis, including the
-calibration offset when alignment is enabled. The raw/prepared axes line up
-visually, but their signals can have different energy offsets. Reference inspection
-uses measured energy so its marker identifies the feature before alignment.
+### Use the correct energy axis for each window
 
-## Inspect the reference calibration
-
-With energy alignment checked, click **Preview**, then **Show reference calibration**
-to expand an optional panel on the right. If that would exceed the available
-screen, it opens as a **Reference calibration** preview tab instead; switch back
-to **Raw / prepared preview** for the signals. **Hide reference calibration** collapses
-it again. The panel is hidden initially and does not change preparation targets.
-
-Choose an acquisition in its dropdown to see the actual reference-channel/I0
-signal used by that acquisition's preview. A separate **PD reference** entry
-shows the photodiode acquisition's own calibration when PD correction is enabled.
-The chosen energy-reference channel is respected, including alternatives to the foil.
-
-For **parab3**, orange points identify the three native input samples and the red
-curve shows their **local interpolating parabola**. The vertical marker and readout
-give the measured feature energy; the summary also reports the aligned target
-and applied offset. This is feature localisation, not a full-spectrum Gaussian
-or component fit. **argextreme** and boundary fallbacks show the measured point
-and explain why no parabola is drawn. See [the calibration convention](../reference/lineshapes.md#reference-energy-calibration).
-
-The horizontal axis is **measured energy before alignment**. It initially spans
-the recorded reference search window; wheel/drag zoom can inspect the wider
-retained trace. **Show search window** restores the recorded limits. The fitted
-curve is drawn only across its three input samples, rather than extrapolated
-over the entire reference spectrum.
-
-Opening the panel, changing its scan or zooming never runs calibration. It reads
-results retained by Preview. After settings change, the panel labels those results
-as **previous preparation / preview**; Preview again to update. Unpreviewed scans,
-older sessions without an inspection record and alignment-disabled preparations
-show an explicit unavailable message. A failed preview does not replace an older
-display with an apparently successful result. Apply still requires a successful
-complete preparation preview.
-
-:::{figure} ../media/images/reference-calibration-preview.png
-:label: figure-reference-calibration
-:alt: Expanded preparation dialog with a reference acquisition selector, measured reference over I0 signal, local red parabola, orange input samples and purple feature-energy marker.
-
-Optional reference inspection in GUI 0.2.24. These scans are synthetic; measured
-feature energy and the target/offset readout describe the native calibration.
-:::
-
-## Choose normalisation windows by inspection
-
-After Preview, drag the **blue Baseline** and **orange Scale** boundaries on the
-lower prepared-energy plot. Drag either boundary to change a limit, or drag the
-shaded interval to move a whole window. The numeric fields update when the drag
-is released; numeric edits also move the markers. The markers are hidden when
-baseline/scale intensity preparation is unchecked.
-
-If a default window lies outside your scan, enter suitable limits numerically
-before Preview. The defaults are suggestions, not windows inferred from the data.
-
-The lower plot uses the prepared energy axis, including the chosen alignment.
-The raw-count plot above remains a comparison with the original acquisition.
-Use the preview-stage dropdown to inspect corrected or I0-normalised signals as
-well as the fit-ready signal, and enable overlays to compare selected scans.
-
-Changing a window or recipe invalidates Apply. The previous curves remain visible
-as an explicitly labelled **previous preview**, so features do not disappear
-while placing the windows. No processing runs during a drag. Click **Preview**
-again and review the result before **Apply to selected scans** becomes available.
-
-:::{figure} ../media/images/preparation-windows-preview.png
-:label: figure-preparation-windows
-:alt: Unified preparation dialog with scan-selection checkboxes, a shared photodiode reference, and blue baseline and orange scale window boundaries on the lower prepared-energy plot.
-
-The same dialog prepares one scan or an explicitly selected series. These
-illustrative scans are synthetic; matching colours identify corresponding traces.
-:::
-
-After optional I0/PD correction, intensity preparation subtracts the mean in the
-baseline window. **Scale method** then selects the denominator:
-
-- **Mean to one** (default): mean of the baseline-subtracted signal in the scale window.
-- **Area to one (trapezoidal)**: signed integral of that signal against measured
-  energy, using consecutive points inside the scale window. It requires at least
-  two points and a nonzero finite area. Endpoints are not interpolated or extrapolated.
-
-Area scaling accounts for unequal energy spacing; it makes the measured window's
-integral one, rather than its average height. It also changes the prepared signal's
-units relative to mean scaling. Negative signed areas are allowed, as negative
-means are in mean mode. Choose suitable windows and inspect the preview. These
-preparation areas are distinct from individual fitted peak areas $A$.
-
-The native engine supplies baseline/mean preparation; optional area scaling is
-implemented in the GUI's Qt-independent preparation wrapper. Existing sessions
-without a scale-method setting keep mean scaling. The choice and denominator
-are retained with the processed channels and session. See also
-[scientific conventions](../reference/lineshapes.md#preparation-scaling).
-
-The PD acquisition is I0-normalised and, when selected, independently energy
-aligned. Its response is interpolated for division over the common energy
-range. The overlap can shorten the prepared spectrum; inspect the preview and
-retained point counts. Missing references, zero denominators and unsuitable
-windows are errors to resolve, not reasons to silently invent a correction.
+Reference searches use original measured energy. Baseline/scale windows use the
+prepared axis; see [reference coordinates](reference-calibration.md#use-the-correct-energy-axis-for-each-window)
+and [normalisation windows](normalisation-windows.md).
 
 ## Apply one recipe to a series
 
@@ -203,9 +105,11 @@ I0-normalised, I0/PD-corrected and prepared signals when available. Preparation
 changes invalidate the affected fits. Older cached channels that could not be
 replaced are labelled **previous preparation**.
 
+:::{tip} Keep a preparation checkpoint
 Save a complete session before major processing changes if you need a persistent
 checkpoint. Preparation is not a single collection-wide model Undo operation.
 Original source files are not rewritten by Preview or Apply.
+:::
 
 ## If preparation needs attention
 
@@ -221,7 +125,26 @@ Original source files are not rewritten by Preview or Apply.
 A new reference diagnostic currently requires a successful **complete** Preview.
 If a later preparation step fails, the panel can show an earlier record as stale,
 but it does not expose the incomplete attempt as a new successful calibration.
-For the numerical definitions, use the [shared scientific reference](../reference/lineshapes.md).
+For the numerical definitions, use [acquisition processing conventions](../reference/preparation.md).
+
+## Related procedures
+
+### Import a spectrum or a folder
+
+The import process is described in [Import data](importing-data.md).
+
+### The scan browser
+
+See [scan and channel selection](scans-and-channels.md). Browser overlays do not
+select preparation targets.
+
+### Inspect the reference calibration
+
+See [Inspect the reference calibration](reference-calibration.md#inspect-the-reference-calibration) for this procedure.
+
+### Choose normalisation windows by inspection
+
+See [Choose normalisation windows by inspection](normalisation-windows.md#choose-normalisation-windows-by-inspection) for this procedure.
 
 ## Related topics
 

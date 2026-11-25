@@ -1,6 +1,6 @@
 # Worked example: shared shapes and a two-pass series
 
-This GUI **0.2.24** exercise uses three synthetic spectra. It demonstrates
+This GUI **0.2.30** exercise uses three synthetic spectra. It demonstrates
 propagation, sharing, named-scan trends and mean-based pass-two seeds without
 assigning experimental meaning to any component. Start with an unconstrained
 simultaneous fit, then explore explicit trends and a second pass below.
@@ -32,7 +32,10 @@ dE, raw monitor or photodiode correction. Group names bulk/surface are labels on
 
 Positions/widths have global Sharing in the template; areas are per_spectrum.
 That scope matters in simultaneous fitting, not in the representative fit alone.
-No preparation is needed for these already fit-ready CSVs.
+:::{note} These CSVs need no preparation
+The supplied arrays are already fit-ready and contain no native monitor or
+photodiode channels. Fit them directly.
+:::
 
 ## Stage a simultaneous first pass
 
@@ -51,6 +54,8 @@ trends**, add P2_A and choose **Maximum at selected scan**, series-02, **hard**
 strength and **Extremum only**. Choose application to both passes for this exercise.
 This changes first-pass rules, so stage pass one again.
 
+### Optional coordinate-based limits
+
 To inspect coordinate-based limits, choose numeric coordinates in the collection
 dialog and enter **0, 10, 20** in that explicit order. Those are arbitrary example
 units; they are not measured times or doses. An extremum-only rule does not use
@@ -58,6 +63,8 @@ their spacing. Optional maximum-slope rules do: 0.1 area/unit across these inter
 allows area differences of 1.0, whereas a different coordinate unit changes that limit.
 Changing coordinates/order invalidates staged passes; stage pass one again before
 configuring pass two.
+
+### Choose whether to impose monotonic sides
 
 For longer series choose Monotonic sides only when all intervening values should
 rise/fall on their respective sides. Strict inequalities permit ties; a soft
@@ -93,9 +100,11 @@ scan/channel identity, P2 areas and whether P1 positions/widths stayed inside th
 pass-two windows. Joint statistics and per-scan misfit have different scopes;
 strict-constrained stderr is unavailable.
 
+:::{important} Synthetic truth does not set experimental constraints
 This example validates software behaviour on known synthetic signals. It does
 not establish appropriate constraints, component assignments or error bars for
 an experimental series. No downstream coverage or kinetic analysis is included.
+:::
 
 ## Related topics
 
